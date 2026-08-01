@@ -16,9 +16,11 @@ import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 
-// Middleware
+// CORS origins - support multiple
+const corsOrigins = config.cors.origin.split(',').map(o => o.trim());
+
 app.use(cors({
-  origin: config.cors.origin,
+  origin: corsOrigins,
   credentials: true,
 }));
 app.use(express.json());
